@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  /* ฟอร์น */
+
+  --font-primary: var(--font-bai-jamjuree), sans-serif;
+  --font-secondary: var(--font-anuphan), sans-serif;
+  --font-sans: var(--font-bai-jamjuree), sans-serif;
+  
+  /* Colors */
+  --color-brand-blue: #0062ff;
+  --color-brand-yellow: #a8ff00;
+
+  /* Gold Scale (Gold1: #E5C100) */
+  --color-gold-50: #fefcf3;
+  --color-gold-100: #fcf6db;
+  --color-gold-200: #f9ebb3;
+  --color-gold-300: #f5dc83;
+  --color-gold-400: #f0cb53;
+  --color-gold-500: #e5c100; /* Gold1 */
+  --color-gold-600: #b89300;
+  --color-gold-700: #8c6a00;
+  --color-gold-800: #664b03;
+  --color-gold-900: #3d2b02;
+}
