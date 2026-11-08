@@ -5,11 +5,18 @@
 
   --font-primary: var(--font-bai-jamjuree), sans-serif;
   --font-secondary: var(--font-anuphan), sans-serif;
-  --font-sans: var(--font-bai-jamjuree), sans-serif;
-  
+  --font-sans: var(--font-bai-jamjuree), sans-serif;  
   /* Colors */
-  --color-brand-blue: #0062ff;
-  --color-brand-yellow: #a8ff00;
+  --color-brand-blue: #2563EB;
+  --color-brand-yellow: #FDD60A;
+  --color-brand-card: #FEC20A;
+
+  /* Font color */
+  --color-brand-text: #FFFFFF;
+
+  --color-card:#262873;
+
+--color-button-primary: #3C55D0;
 
   /* Gold Scale (Gold1: #E5C100) */
   --color-gold-50: #fefcf3;

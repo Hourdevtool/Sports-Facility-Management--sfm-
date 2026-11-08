@@ -31,8 +31,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="th" className={`${baiJamjuree.variable} ${anuphan.variable}`}>
-      <body>
+    <html lang="th" className={`${baiJamjuree.variable} ${anuphan.variable} overflow-x-hidden`}>
+      <body className="bg-white">
         <Navbar />
         {children}
         <Footer />
