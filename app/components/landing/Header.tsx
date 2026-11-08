@@ -297,28 +297,28 @@ function Header() {
         <div className="w-full -mt-44 sm:-mt-56 lg:-mt-100">
           {/* บรรทัดที่ 1: BECOME (สีขาวบนพื้นเหลือง) */}
           <h1 className="font-primary font-medium text-white text-4xl sm:text-6xl lg:text-[74px] tracking-[0.22em] leading-tight uppercase">
-            BECOME
+            ระบบ
           </h1>
 
           {/* บรรทัดที่ 2: พาดข้ามฝั่งเหลือง (สีขาว) ไปฝั่งขาว (สีดำ) */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 items-baseline mt-1 lg:mt-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-baseline ">
             <div className="font-primary font-medium text-white text-3xl sm:text-5xl lg:text-[68px] tracking-[0.18em] leading-tight uppercase whitespace-nowrap">
-              A MEMBER OF
+              จัดการสนามกีฬา
             </div>
             <div className="font-primary font-medium text-black text-3xl sm:text-5xl lg:text-[68px] tracking-[0.18em] leading-tight uppercase lg:pl-8 mt-2 lg:mt-0 whitespace-nowrap">
-              OUR BONUS
+              ภายในชุมชน
             </div>
           </div>
 
           {/* บรรทัดที่ 3: คำอธิบายเล็กฝั่งซ้าย & คำว่า PROGRAMM ฝั่งขวา */}
           <div className="grid grid-cols-1 lg:grid-cols-2 items-start mt-8 lg:mt-10">
             <p className="text-xs sm:text-sm text-black/80 font-secondary max-w-[240px] leading-relaxed">
-              If you want our bonus card - just come to our
+              ละทะเบียนได้ทั้งแบบเดี่ยวและกลุ่ม
               <br />
-              sports facility and book one of our courts.
+              มีรหัสยืนยันตัวตนที่ชัดเจน
             </p>
-            <div className="font-primary font-semibold text-black text-lg sm:text-2xl lg:text-[26px] tracking-[0.32em] uppercase lg:text-right lg:pr-8 mt-4 lg:mt-2">
-              PROGRAMM
+            <div className="font-primary font-semibold text-black text-lg sm:text-2xl lg:text-[26px] tracking-[0.32em] uppercase lg:text-right  mt-4 -mr-4 lg:mt-2">
+              ง่ายและรวดเร็ว
             </div>
           </div>
         </div>
