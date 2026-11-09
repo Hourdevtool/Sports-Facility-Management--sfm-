@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import gsap from "gsap";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useEffect, useRef } from "react";
@@ -7,6 +9,48 @@ import * as THREE from "three";
 
 function Header() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const ballsContainerRef = useRef<HTMLDivElement>(null);
+
+  // GSAP Floating Animation สำหรับภาพลูกกีฬาในพื้นหลัง
+  useEffect(() => {
+    if (!ballsContainerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // 1. ลูกฟุตบอล (มุมบนซ้าย)
+      gsap.to(".gsap-ball-soccer", {
+        y: -18,
+        rotation: "+=8",
+        duration: 3.6,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      // 2. ลูกวอลเลย์บอล (มุมล่างซ้าย)
+      gsap.to(".gsap-ball-volley", {
+        y: 16,
+        rotation: "-=10",
+        duration: 4.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 0.5,
+      });
+
+      // 3. ลูกบาสเกตบอล (มุมบนขวา)
+      gsap.to(".gsap-ball-basket", {
+        y: -20,
+        rotation: "+=6",
+        duration: 4.0,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 0.25,
+      });
+    }, ballsContainerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -208,6 +252,54 @@ function Header() {
       <div className="absolute inset-0 flex flex-row pointer-events-none">
         <div className="w-1/2 h-full bg-brand-yellow" />
         <div className="w-1/2 h-full bg-white" />
+      </div>
+
+      {/* ================= เลเยอร์ลูกกีฬาพื้นหลัง (อยู่หลังสุด z-[1], ซ่อนบนมือถือ/แท็บเล็ต, Opacity ต่ำ) ================= */}
+      <div
+        ref={ballsContainerRef}
+        className="hidden lg:block absolute inset-0 pointer-events-none z-[1] overflow-hidden"
+      >
+        {/* 1. ลูกฟุตบอล: มุมบนซ้าย (Top-Left Corner) - หลบหัวข้อขึ้นไปมุมว่างด้านบน */}
+        <div className="absolute top-[8%] xl:top-[10%] left-[2%] xl:left-[3.5%] opacity-35 xl:opacity-45">
+          <div className="gsap-ball-soccer relative w-32 h-32 xl:w-44 xl:h-44 -rotate-12 filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.2)]">
+            <Image
+              src="/asset/ball.png"
+              alt="ลูกฟุตบอลตกแต่งพื้นหลัง"
+              fill
+              sizes="(max-width: 1280px) 128px, 176px"
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* 2. ลูกวอลเลย์บอล: มุมล่างซ้าย (Bottom-Left Corner) - อยู่ในพื้นที่ว่างมุมซ้ายล่าง */}
+        <div className="absolute bottom-[7%] xl:bottom-[9%] left-[3%] xl:left-[5%] opacity-35 xl:opacity-45">
+          <div className="gsap-ball-volley relative w-28 h-28 xl:w-40 xl:h-40 rotate-[14deg] filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.2)]">
+            <Image
+              src="/asset/voleyball.png"
+              alt="ลูกวอลเลย์บอลตกแต่งพื้นหลัง"
+              fill
+              sizes="(max-width: 1280px) 112px, 160px"
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* 3. ลูกบาสเกตบอล: มุมบนขวา (Top-Right Corner) - อยู่ในพื้นที่ว่างกว้างมุมขวาบนของฝั่งขาว */}
+        <div className="absolute top-[12%] xl:top-[14%] right-[4%] xl:right-[6%] opacity-35 xl:opacity-45">
+          <div className="gsap-ball-basket relative w-32 h-32 xl:w-48 xl:h-48 -rotate-6 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.15)]">
+            <Image
+              src="/asset/basketball.png"
+              alt="ลูกบาสเกตบอลตกแต่งพื้นหลัง"
+              fill
+              sizes="(max-width: 1280px) 128px, 192px"
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
       </div>
 
       {/* ================= ของตกแต่งรอบนอก ================= */}
