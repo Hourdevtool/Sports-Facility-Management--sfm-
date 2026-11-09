@@ -203,7 +203,7 @@ function Header() {
   }, []);
 
   return (
-    <header className="relative w-full max-w-full h-screen min-h-[600px] overflow-hidden bg-white select-none">
+    <header id="hero" className="relative w-full max-w-full h-screen min-h-[600px] overflow-hidden bg-white select-none">
       {/* พื้นหลังแบ่งครึ่ง 50/50 ซ้ายเหลือง - ขวาขาว */}
       <div className="absolute inset-0 flex flex-row pointer-events-none">
         <div className="w-1/2 h-full bg-brand-yellow" />

@@ -42,7 +42,7 @@ const StadiumIcon = () => (
 
 function Info() {
     return (
-        <section className="relative w-full max-w-full min-h-screen xl:h-screen overflow-hidden select-none bg-white">
+        <section id="info" className="relative w-full max-w-full min-h-screen xl:h-screen overflow-hidden select-none bg-white">
             {/* พื้นหลังแบ่งครึ่ง ซ้ายขาว - ขวาเหลือง */}
             <div className="absolute inset-0 flex flex-col lg:flex-row pointer-events-none">
                 <div className="w-full lg:w-1/2 h-1/2 lg:h-full bg-white" />
