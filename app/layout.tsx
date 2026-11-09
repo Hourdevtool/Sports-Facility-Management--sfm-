@@ -33,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="th" className={`${baiJamjuree.variable} ${anuphan.variable} overflow-x-hidden`}>
       <body className="bg-white">
-        {/* <Navbar /> */}
+        <Navbar />
         {children}
         <Footer />
       </body>
