@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
 import { SectionItem, SectionIndicatorProps } from "@/app/types/Scteion";
 
 
 const DEFAULT_SECTIONS: SectionItem[] = [
   { id: "hero", name: "หน้าหลัก" },
+  { id: "how-it-works", name: "วิธีใช้งาน" },
   { id: "info", name: "เกี่ยวกับเรา" },
 ];
 
@@ -15,6 +17,74 @@ export default function SectionIndicator({
   const [activeSection, setActiveSection] = useState<string>(
     sections[0]?.id ?? "hero"
   );
+  const navRef = useRef<HTMLElement>(null);
+  const hasMountedRef = useRef(false);
+
+  // GSAP Entrance Animation สำหรับจุดบอกตำแหน่งด้านขวา
+  useEffect(() => {
+    const navEl = navRef.current;
+    if (!navEl) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      {
+        isMotionAllowed: "(prefers-reduced-motion: no-preference)",
+        isReducedMotion: "(prefers-reduced-motion: reduce)",
+      },
+      (context) => {
+        const { isMotionAllowed } = context.conditions as {
+          isMotionAllowed: boolean;
+          isReducedMotion: boolean;
+        };
+
+        if (!isMotionAllowed) {
+          gsap.set(".gsap-section-dot-item", { clearProps: "all" });
+          return;
+        }
+
+        gsap.fromTo(
+          ".gsap-section-dot-item",
+          { x: 24, opacity: 0, scale: 0.6 },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.65,
+            stagger: 0.1,
+            delay: 0.65,
+            ease: "back.out(1.7)",
+          }
+        );
+      },
+      navEl
+    );
+
+    return () => mm.revert();
+  }, []);
+
+  // GSAP Pulse เมื่อเปลี่ยน Section ที่กำลังเปิดดู
+  useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+    const navEl = navRef.current;
+    if (!navEl) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const activeDot = navEl.querySelector(
+      `[data-section-dot="${activeSection}"]`
+    );
+    if (activeDot) {
+      gsap.fromTo(
+        activeDot,
+        { scale: 0.7 },
+        { scale: 1.1, duration: 0.45, ease: "elastic.out(1.2, 0.5)" }
+      );
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,6 +140,7 @@ export default function SectionIndicator({
 
   return (
     <nav
+      ref={navRef}
       aria-label="การนำทางระหว่างส่วนของหน้า"
       className="fixed right-4 sm:right-6 xl:right-8 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-6 sm:gap-7 select-none pointer-events-auto"
     >
@@ -79,7 +150,7 @@ export default function SectionIndicator({
         return (
           <div
             key={section.id}
-            className="relative flex items-center justify-center group"
+            className="gsap-section-dot-item relative flex items-center justify-center group"
           >
             {/* ป้ายชื่อ Section (Tooltip / Badge) ด้านซ้ายของจุด - แสดงเฉพาะตอน Hover */}
             <div
@@ -96,10 +167,11 @@ export default function SectionIndicator({
               onClick={() => scrollToSection(section.id)}
               aria-label={`ไปยังส่วน ${section.name}`}
               aria-current={isActive ? "true" : undefined}
-              className="relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full cursor-pointer focus:outline-none group"
+              className="relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue group"
             >
               <span
-                className={`block rounded-full transition-all duration-300 ease-out ${
+                data-section-dot={section.id}
+                className={`block rounded-full transition-colors duration-300 ease-out ${
                   isActive
                     ? "w-3 h-3 sm:w-3.5 sm:h-3.5 bg-black ring-2 ring-black/25 ring-offset-2 ring-offset-transparent shadow-md scale-110"
                     : "w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white border border-black/35 shadow-sm group-hover:scale-125 group-hover:border-black"
