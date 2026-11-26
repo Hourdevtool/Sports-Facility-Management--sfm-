@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tidbcloud/serverless": "^0.3.0",
+    "dotenv": "^18.0.10",
+    "drizzle-orm": "^1.0.0-rc.6",
     "gsap": "^3.15.1",
     "next": "16.4.5",
     "react": "19.3.0",
@@ -21,9 +24,11 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.187.0",
+    "drizzle-kit": "^1.0.0-rc.6",
     "eslint": "^9",
     "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }
