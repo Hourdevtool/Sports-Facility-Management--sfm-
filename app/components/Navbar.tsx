@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import gsap from "gsap"
-import { MenuItem } from "@/app/types/MenuItem"
+import { MenuItem } from "@/types/ui/MenuItem"
 
 function Navbar() {
   const pathName = usePathname()

@@ -1,26 +1,23 @@
-import React from "react";
+import type React from "react";
 
 /**
  * ธีมสีหลักของการ์ดที่อ้างอิงจาก Design System ใน globals.css
  */
 export type CardVariant =
-  | "default"  
-  | "primary"   
-  | "blue"      
-  | "yellow"   
-  | "gold"      
-  | "outline";  
-
+  | "default"
+  | "primary"
+  | "blue"
+  | "yellow"
+  | "gold"
+  | "outline";
 
 export type CardSize = "sm" | "default" | "lg" | "full" | "auto";
 
-
 export type CardFont = "primary" | "secondary";
-
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
-  /** รูปแบบธีมสีของการ์ด */
+  /** รูปแบบสีของการ์ด */
   variant?: CardVariant;
   /** ขนาดและการจัด Padding */
   size?: CardSize;
@@ -51,4 +48,3 @@ export interface StatCardProps extends Omit<CardProps, "children" | "title"> {
   /** รองรับ children เพิ่มเติมหากต้องการแทรกเนื้อหาข้างใต้ */
   children?: React.ReactNode;
 }
-

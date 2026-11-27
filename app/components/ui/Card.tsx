@@ -5,7 +5,7 @@ import {
   CardVariant,
   CardSize,
   CardFont,
-} from "@/app/types/Card";
+} from "@/types/ui/Card";
 
 // สไตล์พื้นฐานของการ์ด
 const baseCardStyles =

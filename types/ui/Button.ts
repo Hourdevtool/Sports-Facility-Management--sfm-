@@ -6,4 +6,3 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   size?: "default" | "sm" | "lg" | "full" | "auto";
   className?: string;
 }
-

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
-import { SectionItem, SectionIndicatorProps } from "@/app/types/Scteion";
+import { SectionItem, SectionIndicatorProps } from "@/types/ui/Section";
 
 
 const DEFAULT_SECTIONS: SectionItem[] = [
